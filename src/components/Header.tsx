@@ -42,14 +42,18 @@ export default function Header() {
   const isHomePage = pathname === "/";
 
   useEffect(() => {
-    const hasSeenPopup = localStorage.getItem("hasSeenWelcomePopup");
-    if (isHomePage && !hasSeenPopup) {
-      const timer = setTimeout(() => {
+    const showFirstVisitPopup = () => {
+      const hasSeenPopup = localStorage.getItem("hasSeenWelcomePopup");
+      if (!hasSeenPopup) {
         setShowPopup(true);
         localStorage.setItem("hasSeenWelcomePopup", "true");
-      }, 2500); // Show after 2.5 seconds to allow page to settle
-      return () => clearTimeout(timer);
+      }
+    };
+
+    if (isHomePage) {
+      window.addEventListener('sequence-loaded', showFirstVisitPopup);
     }
+    return () => window.removeEventListener('sequence-loaded', showFirstVisitPopup);
   }, [isHomePage]);
 
   // We want the header purely transparent on the home page when it hasn't been scrolled past the hero section (which we now track in `scrolled` state)

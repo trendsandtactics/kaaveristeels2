@@ -1,12 +1,14 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { useScroll, useTransform, motion } from "framer-motion";
+import { useScroll, useTransform, motion, AnimatePresence } from "framer-motion";
+import Preloader from "./Preloader";
 
 const FRAME_COUNT = 158;
 
 export default function SteelScroll() {
     const [loaded, setLoaded] = useState(false);
+    const [progress, setProgress] = useState(0);
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const imagesRef = useRef<HTMLImageElement[]>([]);
     const containerRef = useRef<HTMLDivElement>(null);
@@ -21,6 +23,7 @@ export default function SteelScroll() {
     useEffect(() => {
         // Preload images
         const loadImages = async () => {
+            let loadedCount = 0;
             const promises = Array.from({ length: FRAME_COUNT }).map((_, i) => {
                 return new Promise<void>((resolve) => {
                     const img = new Image();
@@ -29,19 +32,24 @@ export default function SteelScroll() {
 
                     img.onload = () => {
                         imagesRef.current[i] = img;
+                        loadedCount++;
+                        setProgress((loadedCount / FRAME_COUNT) * 100);
                         resolve();
                     };
 
                     img.onerror = () => {
                         console.warn(`Failed to load frame ${i}`);
                         // Resolve anyway to prevent hanging on one missing frame
+                        loadedCount++;
+                        setProgress((loadedCount / FRAME_COUNT) * 100);
                         resolve();
                     };
                 });
             });
 
             await Promise.all(promises);
-            setTimeout(() => setLoaded(true), 100); // reduced delay since preloader is gone
+            window.dispatchEvent(new CustomEvent('sequence-loaded'));
+            setTimeout(() => setLoaded(true), 800); // Wait for preloader exit animation
         };
 
         loadImages();
@@ -107,6 +115,9 @@ export default function SteelScroll() {
 
     return (
         <>
+            <AnimatePresence>
+                {!loaded && <Preloader progress={progress} />}
+            </AnimatePresence>
             <div ref={containerRef} className="relative h-[600vh] bg-transparent w-full">
                 <div className="sticky top-0 h-screen w-full overflow-hidden flex items-center justify-center">
 

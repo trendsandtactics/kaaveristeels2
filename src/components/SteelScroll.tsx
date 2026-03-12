@@ -5,7 +5,7 @@ export default function SteelScroll() {
         <div id="steel-scroll-section" className="relative h-screen w-full bg-black overflow-hidden">
             <video
                 className="absolute inset-0 w-full h-full object-cover"
-                src="/kaaveritmt12.mp4"
+                src="/1vid.mp4"
                 autoPlay
                 muted
                 loop

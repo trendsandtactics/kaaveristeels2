@@ -38,7 +38,7 @@ export default function HomeAbout() {
                     >
                         <div className="relative w-full pb-[65%] bg-black">
                             <iframe
-                                src="https://www.youtube.com/embed/OFUDOvewAG8?autoplay=1&mute=1&loop=1&playlist=OFUDOvewAG8&controls=0&showinfo=0&rel=0"
+                                src="https://www.youtube.com/embed/OFUDOvewAG8?autoplay=1&mute=0&loop=1&playlist=OFUDOvewAG8&controls=0&showinfo=0&rel=0"
                                 title="KAAVERI TMT YouTube Preview"
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                                 className="absolute top-0 left-0 w-full h-full object-cover pointer-events-none scale-[1.15]"

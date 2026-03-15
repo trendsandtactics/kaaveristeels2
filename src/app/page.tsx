@@ -21,15 +21,6 @@ export default function Home() {
           <source src="/video/hero.mp4" type="video/mp4" />
         </video>
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/10 z-10" />
-        
-        <div className="relative z-20 text-center max-w-5xl mx-auto px-6 w-full flex flex-col items-center">
-          <h1 className="text-white font-heading text-5xl md:text-7xl lg:text-8xl mb-4 drop-shadow-lg font-bold">
-            Forging the <span className="text-accent-red">Future</span>
-          </h1>
-          <p className="text-white/90 font-body text-lg md:text-xl lg:text-2xl drop-shadow-md max-w-3xl">
-            Premium TMT bars and structural steel products built with precision and trusted by engineers worldwide.
-          </p>
-        </div>
       </section>
 
       {/* Scrollytelling Hero Area */}

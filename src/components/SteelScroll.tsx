@@ -23,7 +23,7 @@ export default function SteelScroll() {
       {/* Bottom Center Content */}
       <div className="absolute inset-0 z-10 flex flex-col items-center justify-end text-center px-6 pb-20">
 
-        <h2 className="font-heading text-4xl md:text-7xl text-white font-bold leading-tight drop-shadow-[0_4px_24px_rgba(0,0,0,0.8)]">
+        <h2 className="font-heading text-2xl md:text-5xl text-white font-bold leading-tight drop-shadow-[0_4px_24px_rgba(0,0,0,0.8)]">
           Building India&apos;s Future.
         </h2>
 
